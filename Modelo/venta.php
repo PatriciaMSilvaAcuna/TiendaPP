@@ -45,7 +45,16 @@ mysqli_close($conexion);
 <input type="submit" class="btn btn-success btn-lg " value="Agregar">
 
 <div class="d-flex justify-content-end">
-<a href="accesoAceptadoVendedor.html" class="btn btn-secondary btn-lg ">Volver</a>
+
+<?php
+    session_start();
+	if ($_SESSION['id_Tipo_de_usuario'] == 1) {
+		echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
+	} else {
+		echo '<a href="accesoAceptadoVendedor.php" class="btn btn-secondary btn-lg ">Volver</a>';
+	}
+?>
+
 </div>
 <footer class="text-center bg-dark text-white py-3">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>

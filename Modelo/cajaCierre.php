@@ -15,18 +15,25 @@
 	
 <div class="d-flex justify-content-center align-items-center flex-grow-1 mb-5">
   
-        <form action="http://localhost:8080/Tienda/Modelo/abrirCaja.php" method="post">
+        <form action="http://localhost:8080/Tienda/Modelo/cerrarCaja.php" method="post">
             <div class="form-group">
-                <label>Ingrese Monto de Apertura:</label>
+                <label>Ingrese Monto de Cierre :</label>
                 
-                <input type="text" name="montoInicio" class="form-control">
+                <input type="text" name="montoFinal" class="form-control">
             </div>
              <br>
-            <input type="submit" value="Abrir Caja" class="btn btn-primary">
+            <input type="submit" value="Cerrar Caja" class="btn btn-primary">
         </form>
     </div>
     <div class="mt-auto">
-        <a href="../Vista/accesoAceptadoVendedor.html" class="btn btn-secondary btn-lg float-right ">Volver</a>
+        <?php
+    session_start();
+    if ($_SESSION['id_Tipo_de_usuario'] == 1) {
+        echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
+    } else {
+        echo '<a href="accesoAceptadoVendedor.php" class="btn btn-secondary btn-lg ">Volver</a>';
+    }
+?>
     </div> 
   <br>
 <footer class="text-center bg-dark text-white py-3 fixed-bottom">

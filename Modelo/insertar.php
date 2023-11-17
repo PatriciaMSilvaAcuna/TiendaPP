@@ -12,7 +12,7 @@
 <?php
 $conexion=mysqli_connect("localhost","root","","tiendapabeso") or
 die("Problemas con la conexión");
-mysqli_query($conexion, "insert into empleado(dni,nombre,usuario,contrasena,estado,id_Tipo_de_usuario)
+$_registro = mysqli_query($conexion, "select * from where (dni,nombre,usuario,contrasena,estado,id_Tipo_de_usuario)
 values ('$_REQUEST[dni]','$_REQUEST[nombre]','$_REQUEST[usuario]','$_REQUEST[contrasena]','$_REQUEST[estado]',$_REQUEST[id_Tipo_de_usuario])") or die
 ("Problemas en el select".mysqli_error($conexion));
 mysqli_close($conexion);

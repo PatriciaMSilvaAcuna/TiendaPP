@@ -15,13 +15,15 @@ if ($reg=mysqli_fetch_array($registros))
 {
 
     if ($reg ['estado'] == 1){
+         $_SESSION['usuario'] = $reg['usuario'];
+         $_SESSION['id_Tipo_de_usuario'] = $reg ['id_Tipo_de_usuario'];
             if ($reg['id_Tipo_de_usuario']==1){
                 $_SESSION['usuario'];
-                    header('location: ..\vista\accesoAceptadoAdmin.html');
+                    header('location: ..\Modelo\accesoAceptadoAdmin.php');
                 }
                 else {
                     $_SESSION['usuario'];
-                    header('location: ..\vista\accesoAceptadoVendedor.html');
+                    header('location: ..\Modelo\accesoAceptadoVendedor.php');
                 }
     }
     else {

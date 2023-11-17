@@ -26,7 +26,14 @@
         </form>
     </div>
     <div class="mt-auto">
-        <a href="../Vista/accesoAceptadoVendedor.html" class="btn btn-secondary btn-lg float-right ">Volver</a>
+<?php
+    session_start();
+    if ($_SESSION['id_Tipo_de_usuario'] == 1) {
+        echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
+    } else {
+        echo '<a href="accesoAceptadoVendedor.php" class="btn btn-secondary btn-lg ">Volver</a>';
+    }
+?>
     </div> 
   <br>
 <footer class="text-center bg-dark text-white py-3 fixed-bottom">
