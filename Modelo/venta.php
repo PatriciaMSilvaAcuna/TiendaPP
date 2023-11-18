@@ -15,35 +15,44 @@
 <h3 class="d-flex justify-content-center align-items-center pt-3 pr-2 pb-3 pl-2"> Procesar Venta </h3>
 
 <form action = "venta.php" method="post">
-Ingrese ID de Prenda:
-		<input type = "text" name="id_Prenda" required>
+Ingrese Prenda:
+
+		<input type = "text" name="descripcion" required>
 	
 <br>
 <br>
 <input type="submit" class="btn btn-info btn-lg " value="Buscar">
 </form>
+<form action='procesarVenta.php' method='post'>
 <?php 
 	$conexion=mysqli_connect("localhost","root","","tiendapabeso") or
 die("Problemas con la conexión");
 
-if (isset($_REQUEST['id_Prenda'])) {
-    $registro=mysqli_query($conexion, "SELECT id_Prenda, descripcion FROM prendas where id_Prenda ='$_REQUEST[id_Prenda]'")
+if (isset($_REQUEST['descripcion'])) {
+	$descripcion = mysqli_real_escape_string($conexion, $_REQUEST['descripcion']);
+    $registro=mysqli_query($conexion, "SELECT id_Prenda, descripcion FROM prendas WHERE descripcion LIKE '%$descripcion%'")
     or die(" Problemas con la conexión".mysql_error($conexion));
-
-    if($reg=mysqli_fetch_array($registro)) {
+  
+  if(mysqli_num_rows($registro) > 0) {
+      while($reg=mysqli_fetch_array($registro)) {
         echo "ID Prenda: ".$reg['id_Prenda']."<br>";
         echo "Descripcion: ".$reg['descripcion']."<br>";
-    }
-} else {
-    echo "ID de prenda no definido";
-}
+        echo "<input type='checkbox' name='prendas[]' value='".$reg['id_Prenda']."'> Seleccionar<br>";
+                                               }
+           }
+  else {
+  	
 
+  	echo "<p style='color: red;'>Lo siento, no encuentro eso.</p>";
+    
+}
+}
 mysqli_close($conexion);
 ?>
 
 <br>
 <input type="submit" class="btn btn-success btn-lg " value="Agregar">
-
+</form>
 <div class="d-flex justify-content-end">
 
 <?php
@@ -56,7 +65,7 @@ mysqli_close($conexion);
 ?>
 
 </div>
-<footer class="text-center bg-dark text-white py-3">
+<footer class="text-center bg-dark text-white py-3 fixed-bottom">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>
 </footer>	
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

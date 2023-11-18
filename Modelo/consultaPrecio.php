@@ -17,8 +17,8 @@
 
 	<div class="d-flex justify-content-center align-items-center vh-100">
 <form action="../Modelo/pagina3.php" method="post">
-Ingrese ID de la prenda a consultar:
-<input type="text" name="id_Prenda" placeholder=" Ingrese Id de Prenda">
+Ingrese prenda a consultar:
+<input type="text" name="descripcion" placeholder=" Ingrese Prenda">
 <br>
 <br>
 <div>

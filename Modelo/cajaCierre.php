@@ -13,9 +13,9 @@
 </header>
 
 	
-<div class="d-flex justify-content-center align-items-center flex-grow-1 mb-5">
+      <div class="d-flex justify-content-center align-items-center flex-grow-1 mb-5">
   
-        <form action="http://localhost:8080/Tienda/Modelo/cerrarCaja.php" method="post">
+          <form action="http://localhost:8080/Tienda/Modelo/cerrarCaja.php" method="post">
             <div class="form-group">
                 <label>Ingrese Monto de Cierre :</label>
                 
@@ -23,10 +23,11 @@
             </div>
              <br>
             <input type="submit" value="Cerrar Caja" class="btn btn-primary">
-        </form>
-    </div>
-    <div class="mt-auto">
-        <?php
+           </form>
+      </div>
+<div class="mt-auto">
+<?php
+
     session_start();
     if ($_SESSION['id_Tipo_de_usuario'] == 1) {
         echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';

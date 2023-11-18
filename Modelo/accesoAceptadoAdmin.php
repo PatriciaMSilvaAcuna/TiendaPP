@@ -46,7 +46,7 @@ function cerrarCaja(){
 	window.location.href="../Modelo/cajaCierre.php";
 	}
 function abrirCaja() {
-	window.location.href ="../Vista/caja.html";
+	window.location.href ="../Modelo/caja.php";
 }	
 function venta() {
 	window.location.href ="http://localhost:8080/Tienda/Modelo/venta.php";
