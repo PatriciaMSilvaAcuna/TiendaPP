@@ -22,18 +22,22 @@ $resultado = mysqli_query($conexion, "SELECT id_Empleado FROM empleado WHERE usu
 $fila = mysqli_fetch_assoc($resultado);
 $idEmpleado = $fila['id_Empleado'];
 
-$montoInicio = $_POST['montoInicio'];
+$montoFinal = $_POST['montoFinal'];
+$resultado = mysqli_query($conexion, "SELECT MAX(id_Caja) AS id_Caja FROM caja");
+$fila = mysqli_fetch_assoc($resultado);
+$id_Caja = $fila['id_Caja'];
 
 // Obtén la fecha del sistema
-$fechaApertura = date('Y-m-d');
+$fechaCierre = date('Y-m-d');
 
-$consulta = "INSERT INTO caja (id_Empleado, monto_Inicio, fecha_Apertura) VALUES ('$idEmpleado', '$montoInicio', '$fechaApertura')";
+$consulta = "UPDATE caja SET monto_Final = '$montoFinal', fecha_Cierre = '$fechaCierre' WHERE id_Caja = '$id_Caja'";
 
 if(mysqli_query($conexion, $consulta)){
-    echo "<p id='mensaje'>$nombreUsuario dió de alta caja numero $idEmpleado, con $ $montoInicio</p>";
+    echo "<p id='mensaje'>$nombreUsuario cerró  caja numero $idEmpleado, con $ $montoFinal</p>";
 } else {
     echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 }
+
 mysqli_close($conexion);
 ?>
 
