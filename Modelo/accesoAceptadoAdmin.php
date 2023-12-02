@@ -63,7 +63,7 @@ function salir() {
 
 
 function AdministracionEmpleados() {
-  window.location.href ="AdministracionEmpleados.html";
+  window.location.href ="../Vista/AdministracionEmpleados.html";
 }
 
   
