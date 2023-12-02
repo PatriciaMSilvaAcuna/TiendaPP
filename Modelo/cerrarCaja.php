@@ -33,7 +33,7 @@ $fechaCierre = date('Y-m-d');
 $consulta = "UPDATE caja SET monto_Final = '$montoFinal', fecha_Cierre = '$fechaCierre' WHERE id_Caja = '$id_Caja'";
 
 if(mysqli_query($conexion, $consulta)){
-    echo "<p id='mensaje'>$nombreUsuario cerró  caja numero $idEmpleado, con $ $montoFinal</p>";
+    echo "<p id='mensaje'>$nombreUsuario cerró  caja numero $id_Caja, con $ $montoFinal</p>";
 } else {
     echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 }

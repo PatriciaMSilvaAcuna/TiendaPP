@@ -17,12 +17,19 @@ session_start();
 $conexion=mysqli_connect("localhost","root","","tiendapabeso") or die("Problemas con la conexión");
 
 $nombreUsuario = $_SESSION['usuario'];
-// Obtengo el id_Empleado basándote en el nombre del usuario
+// Obtengo el id_Empleado por el nombre del usuario
 $resultado = mysqli_query($conexion, "SELECT id_Empleado FROM empleado WHERE usuario = '$nombreUsuario'");
 $fila = mysqli_fetch_assoc($resultado);
 $idEmpleado = $fila['id_Empleado'];
-
 $montoInicio = $_POST['montoInicio'];
+
+// Verifico si ya existe una caja abierta
+$verificar = mysqli_query($conexion, "SELECT * FROM caja WHERE id_Empleado = '$idEmpleado' AND fecha_Cierre IS NULL");
+if(mysqli_num_rows($verificar) > 0){
+    echo "<p id='mensaje'>Ya existe una caja abierta para el usuario $nombreUsuario.</p>";
+} else {
+    
+
 
 // Obtén la fecha del sistema
 $fechaApertura = date('Y-m-d');
@@ -33,6 +40,7 @@ if(mysqli_query($conexion, $consulta)){
     echo "<p id='mensaje'>$nombreUsuario dió de alta caja numero $idEmpleado, con $ $montoInicio</p>";
 } else {
     echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+}
 }
 mysqli_close($conexion);
 ?>
