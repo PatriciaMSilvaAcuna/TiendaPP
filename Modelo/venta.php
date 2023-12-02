@@ -30,7 +30,7 @@ die("Problemas con la conexión");
 
 if (isset($_REQUEST['descripcion'])) {
 	$descripcion = mysqli_real_escape_string($conexion, $_REQUEST['descripcion']);
-    $registro=mysqli_query($conexion, "SELECT id_Prenda, descripcion FROM prendas WHERE descripcion LIKE '%$descripcion%'")
+    $registro=mysqli_query($conexion, "SELECT id_Prenda,id_Precio, descripcion FROM prendas WHERE descripcion LIKE '%$descripcion%'")
     or die(" Problemas con la conexión".mysql_error($conexion));
   
   if(mysqli_num_rows($registro) > 0) {
@@ -38,14 +38,16 @@ if (isset($_REQUEST['descripcion'])) {
         echo "ID Prenda: ".$reg['id_Prenda']."<br>";
         echo "Descripcion: ".$reg['descripcion']."<br>";
         echo "<input type='checkbox' name='prendas[]' value='".$reg['id_Prenda']."'> Seleccionar<br>";
-                                               }
+         // guardo el id del precio
+              $_SESSION['id_Precio'] = $reg['id_Precio'];    
+              $_SESSION['prendas_seleccionadas'][$reg['id_Prenda']] = $reg['descripcion'];                              }
            }
   else {
   	
 
   	echo "<p style='color: red;'>Lo siento, no encuentro eso.</p>";
     
-}
+   }
 }
 mysqli_close($conexion);
 ?>
