@@ -22,7 +22,7 @@
 $conexion=mysqli_connect("localhost","root","","tiendapabeso") or
 die("Problemas con la conexión");
 
-$id_empleado = $_REQUEST['id_Empleado'];
+$id_Empleado = $_REQUEST['id_Empleado'];
 
 mysqli_query($conexion, "UPDATE empleado SET estado=false
   WHERE id_Empleado = $_REQUEST[id_Empleado]") or die
