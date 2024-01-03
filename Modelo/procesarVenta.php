@@ -18,10 +18,10 @@
         <option value="3">Tarjeta de Crédito</option>
        
         
-        <!-- Agrega más opciones según sea necesario -->
     </select><br>
+    
     <label for="precio">Precio:</label><br>
-    <input type="text" id="precio" name="precio" value="<?php echo $precio; ?>" readonly><br><br><br>
+    <input type="text" id="precio" name="precio" value="<?php session_start(); echo $id_Precio; ?>" readonly><br><br><br>
 
     <br>
     <h3>Productos seleccionados:</h3>

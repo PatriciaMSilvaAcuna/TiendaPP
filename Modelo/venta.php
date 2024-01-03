@@ -6,7 +6,7 @@
 	<title>Venta</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
-<body class="vh-100">
+<body class="d-flex flex-column min-vh-100">
 <header class="text-center bg-dark text-danger py-3">
         <h4 id="Bienvenida"> PaBeSo Tienda</h4>
 </header>
@@ -25,6 +25,7 @@ Ingrese Prenda:
 </form>
 <form action='procesarVenta.php' method='post'>
 <?php 
+    session_start();
 	$conexion=mysqli_connect("localhost","root","","tiendapabeso") or
 die("Problemas con la conexión");
 
@@ -33,10 +34,12 @@ if (isset($_REQUEST['descripcion'])) {
     $registro=mysqli_query($conexion, "SELECT id_Prenda,id_Precio, descripcion FROM prendas WHERE descripcion LIKE '%$descripcion%'")
     or die(" Problemas con la conexión".mysql_error($conexion));
   
+  echo "<div class='text-center'>";
   if(mysqli_num_rows($registro) > 0) {
       while($reg=mysqli_fetch_array($registro)) {
         echo "ID Prenda: ".$reg['id_Prenda']."<br>";
         echo "Descripcion: ".$reg['descripcion']."<br>";
+        echo "Precio: ".$reg['id_Precio']."<br>";
         echo "<input type='checkbox' name='prendas[]' value='".$reg['id_Prenda']."'> Seleccionar<br>";
          // guardo el id del precio
               $_SESSION['id_Precio'] = $reg['id_Precio'];    
@@ -54,11 +57,13 @@ mysqli_close($conexion);
 
 <br>
 <input type="submit" class="btn btn-success btn-lg " value="Agregar">
+<br>
+<br>
 </form>
 <div class="d-flex justify-content-end">
 
 <?php
-    session_start();
+    
 	if ($_SESSION['id_Tipo_de_usuario'] == 1) {
 		echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
 	} else {

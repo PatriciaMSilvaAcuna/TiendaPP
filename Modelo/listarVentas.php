@@ -52,7 +52,7 @@ mysqli_close($conexion);
 ?>
 
 <div class="d-flex justify-content-end">
-<a href="http://localhost:8080/Tienda/vista/accesoAceptadoAdmin.html" class="btn btn-secondary btn-lg ">Volver</a>
+<a href="http://localhost:8080/Tienda/Modelo/accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>
 </div>
 
 <footer class="text-center bg-dark text-white py-3 fixed-bottom">

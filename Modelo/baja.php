@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Buscar</title>
+<title>Borrar</title>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="vh-100">
@@ -8,13 +8,6 @@
         <h4 id="Bienvenida"> PaBeSo Tienda</h4>
 <html>
 
-<head>
-<title>Insertar</title>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="vh-100">
-<header class="text-center bg-dark text-danger py-3">
-        <h4 id="Bienvenida"> PaBeSo Tienda</h4>
 </header>
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
 <div class="text-center">      
@@ -33,6 +26,9 @@ echo "El empleado fue dado de baja.";
 
 ?>
 
+<a href="../Modelo/accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>        
+
+<footer class="text-center bg-dark text-white py-3 fixed-bottom">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>
 </footer>     
 </body>
