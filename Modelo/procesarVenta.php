@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,18 +19,45 @@
         
     </select><br>
     
-    <label for="precio">Precio:</label><br>
+    <label for="precio">Subtotal:</label><br>
     <input type="text" id="precio" name="precio" value="<?php session_start(); echo $id_Precio; ?>" readonly><br><br><br>
 
     <br>
     <h3>Productos seleccionados:</h3>
     <?php
-    if (isset($_SESSION['prendas_seleccionadas'])) {
-        foreach ($_SESSION['prendas_seleccionadas'] as $id_Prenda => $descripcion) {
-            echo "ID Prenda: ".$id_Prenda."<br>";
-            echo "Descripcion: ".$descripcion."<br>";
-        }
-    }
+    if (isset($_POST['prendas'])) {
+    foreach ($_POST['prendas'] as $id_Prenda) {
+        $descripcion = $_SESSION['prendas_seleccionadas'][$id_Prenda];
+        $id_Precio = $_SESSION['prendas_seleccionadas'][$id_Prenda]['id_Precio'];
+
+            $conexion=mysqli_connect("localhost","root","","tiendapabeso") or die("Problemas con la conexión");
+
+        // Realiza la consulta para obtener el precio real
+        $resultado = mysqli_query($conexion, "SELECT precio FROM precio WHERE id_Precio = $id_Precio");
+        $fila = mysqli_fetch_assoc($resultado);
+        $precio = $fila['precio'];
+
+        echo "<div class='container'>";
+        echo "<div class='row border-bottom'>";
+        
+        echo "<div class='col-sm'>";
+        echo "<p><strong>ID Prenda:</strong>".$id_Prenda."</p>";
+        echo "</div>";
+        echo "<div class='col-sm'>";
+        $descripcion = $_SESSION['prendas_seleccionadas'][$id_Prenda]['descripcion'];
+        echo "<p><strong>Descripcion: </strong>".$descripcion."<br>";
+        
+        echo "</div>";
+        echo "<div class='col-sm'>";
+        echo "<p><strong>Descripcion:</strong> ".$precio."</p>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+
+      
+
+   }
+}
 
     ?>
     <input type="submit" class="btn btn-success btn-lg " value="Procesar Venta">
@@ -43,3 +69,4 @@
 
 </body>
 </html>
+

@@ -37,15 +37,27 @@ if (isset($_REQUEST['descripcion'])) {
   echo "<div class='text-center'>";
   if(mysqli_num_rows($registro) > 0) {
       while($reg=mysqli_fetch_array($registro)) {
-        echo "ID Prenda: ".$reg['id_Prenda']."<br>";
-        echo "Descripcion: ".$reg['descripcion']."<br>";
-        echo "Precio: ".$reg['id_Precio']."<br>";
+        echo "<div class='container'>";
+        echo "<div class='row border-bottom'>";
+        
+        echo "<div class='col-sm'>";
+        echo "<p><strong>ID Prenda:</strong> ".$reg['id_Prenda']."</p>";
+        echo "</div>";
+        echo "<div class='col-sm'>";
+        echo "<p><strong>Descripcion:</strong> ".$reg['descripcion']."</p>";
+        echo "</div>";
+        echo "<div class='col-sm'>";
         echo "<input type='checkbox' name='prendas[]' value='".$reg['id_Prenda']."'> Seleccionar<br>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
          // guardo el id del precio
-              $_SESSION['id_Precio'] = $reg['id_Precio'];    
-              $_SESSION['prendas_seleccionadas'][$reg['id_Prenda']] = $reg['descripcion'];                              }
-           }
-  else {
+              $_SESSION['prendas_seleccionadas'][$reg['id_Prenda']] = array(
+        'descripcion' => $reg['descripcion'],
+        'id_Precio' => $reg['id_Precio']
+    ); 
+          }
+ } else {
   	
 
   	echo "<p style='color: red;'>Lo siento, no encuentro eso.</p>";
