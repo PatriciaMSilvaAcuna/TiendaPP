@@ -37,6 +37,11 @@ if (isset($_REQUEST['descripcion'])) {
   echo "<div class='text-center'>";
   if(mysqli_num_rows($registro) > 0) {
       while($reg=mysqli_fetch_array($registro)) {
+        // Realiza la consulta para obtener el precio real
+            $resultado = mysqli_query($conexion, "SELECT precio FROM precio WHERE id_Precio = ".$reg['id_Precio']);
+            $fila = mysqli_fetch_assoc($resultado);
+            $precio = $fila['precio'];
+
         echo "<div class='container'>";
         echo "<div class='row border-bottom'>";
         
@@ -47,6 +52,9 @@ if (isset($_REQUEST['descripcion'])) {
         echo "<p><strong>Descripcion:</strong> ".$reg['descripcion']."</p>";
         echo "</div>";
         echo "<div class='col-sm'>";
+        echo "<p><strong>Precio:</strong> ".$precio."</p>";
+        echo "</div>";
+        echo "<div class='col-sm'>";
         echo "<input type='checkbox' name='prendas[]' value='".$reg['id_Prenda']."'> Seleccionar<br>";
         echo "</div>";
         echo "</div>";
@@ -54,7 +62,9 @@ if (isset($_REQUEST['descripcion'])) {
          // guardo el id del precio
               $_SESSION['prendas_seleccionadas'][$reg['id_Prenda']] = array(
         'descripcion' => $reg['descripcion'],
-        'id_Precio' => $reg['id_Precio']
+        'id_Precio' => $reg['id_Precio'],
+        'precio' => $precio
+
     ); 
           }
  } else {
