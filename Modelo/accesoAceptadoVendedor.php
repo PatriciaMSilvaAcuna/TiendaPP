@@ -34,17 +34,17 @@
 </div>
 <script>
 function abrirCaja() {
-	window.open("../Vista/caja.html");
+	window.location.href ="../Modelo/caja.php";
 
   
 }	
 function venta() {
-	window.open("http://localhost:8080/Tienda/Modelo/venta.php");
+	window.location.href ="http://localhost:8080/Tienda/Modelo/venta.php";
  
 }
 
 function consultaPrecio() {
-  window.open("consultaPrecio.html");
+  window.location.href ="../Modelo/consultaPrecio.php";
 }
 function cerrarCaja(){
 	window.location.href="../Modelo/cajaCierre.php";
