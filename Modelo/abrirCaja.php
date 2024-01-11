@@ -24,7 +24,7 @@ $idEmpleado = $fila['id_Empleado'];
 $montoInicio = $_POST['montoInicio'];
 
 // Verifico si ya existe una caja abierta
-$verificar = mysqli_query($conexion, "SELECT * FROM caja WHERE id_Empleado = '$idEmpleado' AND fecha_Cierre IS NULL");
+$verificar = mysqli_query($conexion, "SELECT * FROM caja WHERE fecha_Cierre IS NULL");
 if(mysqli_num_rows($verificar) > 0){
     echo "<p id='mensaje'>Ya existe una caja abierta para el usuario $nombreUsuario.</p>";
 } else {

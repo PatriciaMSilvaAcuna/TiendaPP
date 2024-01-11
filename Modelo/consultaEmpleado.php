@@ -60,7 +60,7 @@ else {
 // Cerrar la conexión
 mysqli_close($conexion);
 ?>
-<a href="../Modelo/accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>	
+<a href="../Vista/AdministracionEmpleados.html" class="btn btn-secondary btn-lg ">Volver</a>	
 
 
 </body>

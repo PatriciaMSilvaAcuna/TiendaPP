@@ -22,7 +22,7 @@
 
 <button class="btn btn-info btn-lg" onclick="consultaPrecio()">Consulta Precio</button>
 
-<button class="btn btn-primary btn-lg" onclick="cierrarCaja()">Cierre de Caja</button>
+<button class="btn btn-primary btn-lg" onclick="cerrarCaja()">Cierre de Caja</button>
 <br>
 
 <br>
@@ -46,6 +46,9 @@ function venta() {
 function consultaPrecio() {
   window.open("consultaPrecio.html");
 }
+function cerrarCaja(){
+	window.location.href="../Modelo/cajaCierre.php";
+	}
 function salir() {
 	window.location.href = "../index.html";
 
@@ -65,7 +68,7 @@ function salir() {
 <br>
 <br>
 <b>
-<div class="text-rigth p-3" style="background-color: rgba(0,0,0,0.5);">
+<div class="d-flex justify-content-center align-items-center" style="background-color: rgba(0,0,0,0.5);">
 <?php
 session_start();
 echo " Esta trabajando ". $_SESSION['usuario'];

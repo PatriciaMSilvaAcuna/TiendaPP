@@ -27,23 +27,26 @@ $resultado = mysqli_query($conexion, "SELECT MAX(id_Caja) AS id_Caja FROM caja")
 $fila = mysqli_fetch_assoc($resultado);
 $id_Caja = $fila['id_Caja'];
 
-// Obtén la fecha del sistema
-$fechaCierre = date('Y-m-d');
-
-$consulta = "UPDATE caja SET monto_Final = '$montoFinal', fecha_Cierre = '$fechaCierre' WHERE id_Caja = '$id_Caja'";
-
-if(mysqli_query($conexion, $consulta)){
-    echo "<p id='mensaje'>$nombreUsuario cerró  caja numero $id_Caja, con $ $montoFinal</p>";
+// Verifica si la caja ya ha sido cerrada
+$verificar = mysqli_query($conexion, "SELECT * FROM caja WHERE id_Caja = '$id_Caja' AND fecha_Cierre IS NOT NULL");
+if(mysqli_num_rows($verificar) > 0){
+    echo "<p id='mensaje'>La caja numero $id_Caja ya ha sido cerrada.</p>";
 } else {
-    echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+    $fechaCierre = date('Y-m-d');
+    $consulta = "UPDATE caja SET monto_Final = '$montoFinal', fecha_Cierre = '$fechaCierre' WHERE id_Caja = '$id_Caja'";
+    if(mysqli_query($conexion, $consulta)){
+        echo "<p id='mensaje'>$nombreUsuario cerró  caja numero $id_Caja, con $ $montoFinal</p>";
+    } else {
+        echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+    }
 }
 
-mysqli_close($conexion);
+mysqli_close($conexion)
+
 ?>
-
-
-               
 <div class="mt-auto">
+               
+
 <?php
 
    

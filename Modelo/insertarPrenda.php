@@ -18,7 +18,8 @@
     
 </head>
  <form action="altas01.php" method="post">
-            <!-Creamos un select con conexión a la BD para cargar las marcas de autos->
+             <br>
+            <!-Creamos un select con conexión a la BD para cargar los tipos de prendas->
             <label> TIPO DE PRENDAS</label>
             <select id="prendas" name="prendas">
             <?php
@@ -36,13 +37,70 @@
             </select>
             <br>
             <br>
-            <!-Creamos el div que modificaremos para cargar el select de los modelos->
-            <div id="Prenda"></div>
+            <!-Creamos el div que modificaremos para cargar el color->
+            <div id="Color">
+                <label> COLOR DE PRENDA</label>
+            <select id="colorP" name="colorP">
+            <?php
+                $conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die ("problemas con la conexion");
+
+                    $registros = mysqli_query($conexion, "select  id_Color, nombre from color") or die ("Problemas con el select: " . mysqli_error($conexion));
+                    //asignamos al select un valor en cero antes de cargar el while.
+                    echo "<option value=0>Seleccione un Color</options>";
+
+                    while ($reg = mysqli_fetch_array($registros)) {
+
+                        echo "<option value=\"$reg[id_Color]\">$reg[nombre]</options>";
+                    } 
+            ?>
+                
+            </div>
+        </select>
             <br>
             <br>
-            Precio:
-            <input type="text" name="precio" id="precio">
-            <input type="submit" value="Dar de Alta">
+            <div id="talle">
+                <label> TALLE DE PRENDA</label>
+            <select id="talle" name="talle">
+            <?php
+                $conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die ("problemas con la conexion");
+
+                    $registros = mysqli_query($conexion, "select  id_Talle, nombre from talle") or die ("Problemas con el select: " . mysqli_error($conexion));
+                    //asignamos al select un valor en cero antes de cargar el while.
+                    echo "<option value=0>Seleccione un Talle</options>";
+
+                    while ($reg = mysqli_fetch_array($registros)) {
+
+                        echo "<option value=\"$reg[id_Talle]\">$reg[nombre]</options>";
+                    } 
+            ?>
+                
+            </div>
+        </select>
+            <br>
+            <br>
+            <div id="talle">
+                <label>ID DE PRENDA</label>
+            <select id="idPrenda" name="idPrenda">
+            <?php
+                $conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die ("problemas con la conexion");
+
+                    $registros = mysqli_query($conexion, "select descripcion, id_Prenda from prendas") or die ("Problemas con el select: " . mysqli_error($conexion));
+                    //asignamos al select un valor en cero antes de cargar el while.
+                    echo "<option value=0>Seleccione una Prenda segun ID</options>";
+
+                    while ($reg = mysqli_fetch_array($registros)) {
+
+                        echo "<option value=\"$reg[descripcion]\">$reg[id_Prenda]</options>";
+                    } 
+            ?>
+                
+            </div>
+        </select>
+            <br>
+            Cantidad:
+            <input type="text" name="cantidad" id="cantidad">
+
+            <input type="submit" class="btn btn-info btn-lg" value="Dar de Alta">
 
 
 
