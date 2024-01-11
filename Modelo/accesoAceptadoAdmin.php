@@ -83,13 +83,22 @@ function AdministracionEmpleados() {
 <br>
 <br>
 <br>
-<div class="text-rigth p-3" style="background-color: rgba(0,0,0,0.5);">
+<div class="d-flex justify-content-center align-items-center mb-4" style="background-color: rgba(0,0,0,0.5);">
+<b>
 <?php
 session_start();
-echo " Esta trabajando ". $_SESSION['usuario'];
-?> 
-</div>
+if(isset($_SESSION['usuario'])){
+    echo " Está trabajando ". $_SESSION['usuario'];
+} else {
+    echo " Error: No se pudo obtener el nombre del usuario.";
+}
+?>  
 </b>
+</div>
+
+<br>
+<br>
+
 <footer class="text-center bg-dark text-white py-3 fixed-bottom">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>
 </footer>	
