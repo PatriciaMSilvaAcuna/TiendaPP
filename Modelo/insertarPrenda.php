@@ -19,83 +19,35 @@
 </head>
  <form action="altas01.php" method="post">
              <br>
-            <!-Creamos un select con conexión a la BD para cargar los tipos de prendas->
-            <label> TIPO DE PRENDAS</label>
-            <select id="prendas" name="prendas">
+            <!-Creamos un select con conexión a la BD para cargar los TIPOS de prendas->
+
+        
+                <label>TIPO DE PRENDA</label>
+            <select id="prenda" name="prenda">
             <?php
                 $conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die ("problemas con la conexion");
 
-                    $registros = mysqli_query($conexion, "select  id_Tipo_de_prenda, nombre from tipodeprenda") or die ("Problemas con el select: " . mysqli_error($conexion));
+                    $registros = mysqli_query($conexion, "select id_Tipo_de_prenda, nombre from tipodeprenda") or die ("Problemas con el select: " . mysqli_error($conexion));
                     //asignamos al select un valor en cero antes de cargar el while.
-                    echo "<option value=0>Seleccione un Tipo de Prenda</options>";
+                    echo "<option value=0>Seleccione un Tipo de prenda</options>";
 
                     while ($reg = mysqli_fetch_array($registros)) {
 
                         echo "<option value=\"$reg[id_Tipo_de_prenda]\">$reg[nombre]</options>";
                     } 
             ?>
+                
+            
             </select>
+            <br> 
+            <br>
+            <!-Creamos el div que modificaremos para cargar el select de los ID de las prendas->
+            <div id="descripcion"></div>
+        
+
             <br>
             <br>
-            <!-Creamos el div que modificaremos para cargar el color->
-            <div id="Color">
-                <label> COLOR DE PRENDA</label>
-            <select id="colorP" name="colorP">
-            <?php
-                $conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die ("problemas con la conexion");
-
-                    $registros = mysqli_query($conexion, "select  id_Color, nombre from color") or die ("Problemas con el select: " . mysqli_error($conexion));
-                    //asignamos al select un valor en cero antes de cargar el while.
-                    echo "<option value=0>Seleccione un Color</options>";
-
-                    while ($reg = mysqli_fetch_array($registros)) {
-
-                        echo "<option value=\"$reg[id_Color]\">$reg[nombre]</options>";
-                    } 
-            ?>
-                
-            </div>
-        </select>
-            <br>
-            <br>
-            <div id="talle">
-                <label> TALLE DE PRENDA</label>
-            <select id="talle" name="talle">
-            <?php
-                $conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die ("problemas con la conexion");
-
-                    $registros = mysqli_query($conexion, "select  id_Talle, nombre from talle") or die ("Problemas con el select: " . mysqli_error($conexion));
-                    //asignamos al select un valor en cero antes de cargar el while.
-                    echo "<option value=0>Seleccione un Talle</options>";
-
-                    while ($reg = mysqli_fetch_array($registros)) {
-
-                        echo "<option value=\"$reg[id_Talle]\">$reg[nombre]</options>";
-                    } 
-            ?>
-                
-            </div>
-        </select>
-            <br>
-            <br>
-            <div id="talle">
-                <label>ID DE PRENDA</label>
-            <select id="idPrenda" name="idPrenda">
-            <?php
-                $conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die ("problemas con la conexion");
-
-                    $registros = mysqli_query($conexion, "select descripcion, id_Prenda from prendas") or die ("Problemas con el select: " . mysqli_error($conexion));
-                    //asignamos al select un valor en cero antes de cargar el while.
-                    echo "<option value=0>Seleccione una Prenda segun ID</options>";
-
-                    while ($reg = mysqli_fetch_array($registros)) {
-
-                        echo "<option value=\"$reg[descripcion]\">$reg[id_Prenda]</options>";
-                    } 
-            ?>
-                
-            </div>
-        </select>
+            
             <br>
             Cantidad:
             <input type="text" name="cantidad" id="cantidad">
@@ -113,11 +65,11 @@
     //esta función inicia atomaticamente al cargarse la página.
     $(document).ready(function(){
         //Asignamos el valor 0 al select al iniciar la página.
-        $('#color').val(0);
+        $('#prenda').val(0);
         //La funbción recargarLista() realiza una peticion en ajax
         recargarLista();
         //Esta función se va a ejecutar cada vez que el select marca sufra un cambio.
-        $('#color').change(function(){
+        $('#prenda').change(function(){
             // Y vuelve a ejecutar la función recargarLista;
             recargarLista();
         });
@@ -125,17 +77,17 @@
 </script>
 <script type="text/javascript">
     function recargarLista(){
-        // La función realiza una petición ajax mediante un post que trae al select "marca".
+        // La función realiza una petición ajax mediante un post que trae al select "prendas".
         $.ajax({
             // El post manda los datos a datos.php
             type:"POST",
             url:"datos.php",
-            // Se manda como idMarca el contenido del select marca.
-            data:"id_Tipo_de_prenda=" + $('#tipoprenda').val(),
+            // Se manda como idPrenda el contenido del select.
+            data:"id_Tipo_de_prenda=" + $('#prenda').val(),
             // "r" es el que devuelve el contenido html de datos.php.
             success:function(r){
-                // se carga "r" en el div modelo
-                $('#color').html(r);
+                // se carga "r" en el div descripcion
+                $('#descripcion').html(r);
             }
         });
     }

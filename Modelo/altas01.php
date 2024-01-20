@@ -16,7 +16,7 @@ session_start();
 $conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die ("problemas con la conexion");
 
 // Recoge los datos del formulario
-$id_Prenda = $_POST['idPrenda']; // Asegúrate de tener un campo en tu formulario para recoger el id_Prenda
+$id_Prenda = $_POST['id_Prenda']; // Asegúrate de tener un campo en tu formulario para recoger el id_Prenda
 $cantidad = $_POST['cantidad'];
 
 // Crea la consulta SQL
