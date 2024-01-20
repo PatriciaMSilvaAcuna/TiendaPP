@@ -12,31 +12,30 @@
 </header>
 	
 	<div>
-		
-	<h3 class="d-flex justify-content-center align-items-center pt-3 pr-2 pb-3 pl-2"> Consulta de Precio </h3>
 
-	<div class="d-flex justify-content-center align-items-center vh-100">
-<form action="../Modelo/pagina3.php" method="post">
-Ingrese prenda a consultar:
-<input type="text" name="descripcion" placeholder=" Ingrese Prenda">
-<br>
-<br>
-<div>
-<br>
-<input type="submit" class="btn btn-info btn-lg" value="Buscar">
-</form>
-<br>
-<br>
+	<div class="card w-25 h-75 m-auto">	
+		<div class="card-header bg-success text-white text-center">
+			 <h4> Consulta de Precio</h4>
+	</div>
+	<div class="card-body">
+            
+        <form action="../Modelo/pagina3.php" method="post">
+        	<h5 class="card-title">Ingrese prenda a Consultar:</h5>
+        
+           <input type="text" name="descripcion" placeholder=" Ingrese Prenda" class="w-100">
+    <br>
+    <br>
+    <div class="card-footer">
+
+    <br>
+        <input type="submit" class="btn btn-info btn-lg" value="Buscar"class="w-100">
+        </form>
+    <br>
+    <br>
 <br><br><br>
     </div>
-<?php
-    session_start();
-	if ($_SESSION['id_Tipo_de_usuario'] == 1) {
-		echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
-	} else {
-		echo '<a href="accesoAceptadoVendedor.php" class="btn btn-secondary btn-lg ">Volver</a>';
-	}
-?>
+</div>
+<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg">Volver</a>
 </div>
 <footer class="text-center bg-dark text-white py-3 fixed-bottom">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>

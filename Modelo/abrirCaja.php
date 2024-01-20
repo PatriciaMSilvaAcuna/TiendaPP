@@ -31,13 +31,14 @@ if(mysqli_num_rows($verificar) > 0){
     
 
 
-// Obtén la fecha del sistema
+// Obtengo  la fecha del sistema
 $fechaApertura = date('Y-m-d');
 
 $consulta = "INSERT INTO caja (id_Empleado, monto_Inicio, fecha_Apertura) VALUES ('$idEmpleado', '$montoInicio', '$fechaApertura')";
 
 if(mysqli_query($conexion, $consulta)){
-    echo "<p id='mensaje'>$nombreUsuario dió de alta caja numero $idEmpleado, con $ $montoInicio</p>";
+     $idCaja = mysqli_insert_id($conexion);
+    echo "<p id='mensaje'>$nombreUsuario dió de alta caja numero $idCaja, con $ $montoInicio</p>";
 } else {
     echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 }

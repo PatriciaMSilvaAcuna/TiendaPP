@@ -37,23 +37,13 @@ if (isset($_REQUEST['descripcion'])) {
             echo "----------------------------------------------";
         }
     } else {
-        echo "<p style='color: red;'>Por favor, ingrese una descripción.</p>";
+        echo "<p style='color: red;'>No se encontró prendas con esa descripcion.</p>";
     }
-} else {
-    echo "<p style='color: red;'>Por favor, ingrese una descripción.</p>";
 }
 mysqli_close($conexion);
 ?>
 <div>
-<?php
-
-    session_start();
-    if ($_SESSION['id_Tipo_de_usuario'] == 1) {
-        echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
-    } else {
-        echo '<a href="accesoAceptadoVendedor.php" class="btn btn-secondary btn-lg ">Volver</a>';
-    }
-?>
+<a href="consultaPrecio.php" class="btn btn-secondary btn-lg">Volver</a>
 <br>
 <br>
 <br>

@@ -24,15 +24,15 @@
 
 
 
-<button class="btn btn-primary btn-lg" onclick="window.location.href='http://localhost:8080/Tienda/Modelo/listarVentas.php'">Listar Ventas</button>
+<button class="btn btn-primary btn-lg" onclick="window.location.href='http://localhost/Tienda/Modelo/listarVentas.php'">Listar Ventas</button>
 
 <button class="btn btn-success btn-lg" onclick="AdministracionEmpleados()">Administracion Empleados</button>
 
 <button class="btn btn-primary btn-lg" onclick="cerrarCaja()">Cierre de Caja</button>
 <br>
 <br>
-<button class="btn btn-primary btn-lg" onclick="window.location.href='http://localhost:8080/Tienda/Modelo/agregarPrendas.php'">Agregar Prendas</button>
-<button class="btn btn-info btn-lg" onclick="window.location.href='http://localhost:8080/Tienda/Modelo/consultaStock.php'">Consulta Stock</button>
+<button class="btn btn-primary btn-lg" onclick="window.location.href='http://localhost/Tienda/Modelo/agregarPrendas.php'">Agregar Prendas</button>
+<button class="btn btn-info btn-lg" onclick="window.location.href='http://localhost/Tienda/Modelo/consultaStock.php'">Consulta Stock</button>
 
 <br>
 
@@ -52,7 +52,7 @@ function abrirCaja() {
 	window.location.href ="../Modelo/caja.php";
 }	
 function venta() {
-	window.location.href ="http://localhost:8080/Tienda/Modelo/venta.php";
+	window.location.href ="http://localhost/Tienda/Modelo/venta.php";
  
 }
 

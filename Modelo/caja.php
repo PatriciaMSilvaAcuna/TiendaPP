@@ -15,7 +15,7 @@
 	
 <div class="d-flex justify-content-center align-items-center flex-grow-1 mb-5">
   
-        <form action="http://localhost:8080/Tienda/Modelo/abrirCaja.php" method="post">
+        <form action="http://localhost/Tienda/Modelo/abrirCaja.php" method="post">
             <div class="form-group">
                 <label>Ingrese Monto de Apertura:</label>
                 
