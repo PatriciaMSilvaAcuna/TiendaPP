@@ -3,8 +3,10 @@
 $conexion=mysqli_connect('localhost','root','','tiendapabeso');
 //creamos una variable $idPrenda para recuperar el post.
 $id_Tipo_de_prenda=$_POST['id_Tipo_de_prenda'];
+
 	//sql que trae los datos para cargar el select.
 	$sql= "SELECT id_Prenda, descripcion FROM prendas WHERE id_Tipo_de_prenda = '$id_Tipo_de_prenda'";
+
 		//ejecuta la consulta
 	$result=mysqli_query($conexion,$sql);
 	//Graba en la variable $cadena el inicio del select descripcion.

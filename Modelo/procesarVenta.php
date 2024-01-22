@@ -26,20 +26,10 @@
     if (isset($_POST['prendas'])) {
     foreach ($_POST['prendas'] as $id_Prenda) {
         $descripcion = $_SESSION['prendas_seleccionadas'][$id_Prenda];
-        $id_Precio = $_SESSION['prendas_seleccionadas'][$id_Prenda]['id_Precio'];
-
-        
-
-        // Realiza la consulta para obtener el precio real
-        $resultado = mysqli_query($conexion, "SELECT precio FROM precio WHERE id_Precio = $id_Precio");
-        $fila = mysqli_fetch_assoc($resultado);
-        $precio = $fila['precio'];
+        $precio = $_SESSION['prendas_seleccionadas'][$id_Prenda]['precio'];
 
         // Suma el precio al subtotal
         $subtotal += $precio;
-
-
-
       }
     }    
 
@@ -57,17 +47,8 @@
     <?php
     if (isset($_POST['prendas'])) {
     foreach ($_POST['prendas'] as $id_Prenda) {
-        $descripcion = $_SESSION['prendas_seleccionadas'][$id_Prenda];
-        $id_Precio = $_SESSION['prendas_seleccionadas'][$id_Prenda]['id_Precio'];
-
-           // $conexion=mysqli_connect("localhost","root","","tiendapabeso") or die("Problemas con la conexión");
-
-        // Realiza la consulta para obtener el precio real
-        $resultado = mysqli_query($conexion, "SELECT precio FROM precio WHERE id_Precio = $id_Precio");
-        $fila = mysqli_fetch_assoc($resultado);
-        $precio = $fila['precio'];
-
-    
+        $descripcion = $_SESSION['prendas_seleccionadas'][$id_Prenda]['descripcion'];
+        $precio = $_SESSION['prendas_seleccionadas'][$id_Prenda]['precio'];
 
         echo "<div class='container'>";
         echo "<div class='row border-bottom'>";
@@ -76,7 +57,6 @@
         echo "<p><strong>ID Prenda:</strong>".$id_Prenda."</p>";
         echo "</div>";
         echo "<div class='col-sm'>";
-        $descripcion = $_SESSION['prendas_seleccionadas'][$id_Prenda]['descripcion'];
         echo "<p><strong>Descripcion: </strong>".$descripcion."<br>";
         
         echo "</div>";
@@ -85,9 +65,6 @@
         echo "</div>";
         echo "</div>";
         echo "</div>";
-
-      
-
    }
 }
 
@@ -101,4 +78,3 @@
 
 </body>
 </html>
-
