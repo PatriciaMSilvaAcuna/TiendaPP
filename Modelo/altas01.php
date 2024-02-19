@@ -16,7 +16,7 @@ session_start();
 $conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die ("problemas con la conexion");
 
 // Recoge los datos del formulario
-$id_Prenda = $_POST['id_Prenda']; // Asegúrate de tener un campo en tu formulario para recoger el id_Prenda
+$id_Prenda = $_POST['prenda']; 
 $cantidad = $_POST['cantidad'];
 
 // Crea la consulta SQL
@@ -25,8 +25,11 @@ $sql = "UPDATE prendas SET stock = stock + '$cantidad' WHERE id_Prenda = '$id_Pr
 // Ejecuta la consulta
 if (mysqli_query($conexion, $sql)) {
     echo '<div class="alert alert-success" role="alert">Stock de la prenda actualizado con éxito</div>';
+    echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
+
 } else {
     echo '<div class="alert alert-danger" role="alert">Error: ' . $sql . '<br>' . mysqli_error($conexion) . '</div>';
+    echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
 }
 
 // Cierra la conexión
