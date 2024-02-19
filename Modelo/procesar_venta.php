@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,16 +45,49 @@ echo '<div class="d-flex justify-content-center align-items-center" style="heigh
 // Ejecuta la declaración
 if(mysqli_stmt_execute($stmt)){
     echo '<div class="alert alert-success" role="alert">Venta procesada correctamente.</div>';
+
+    // Determina la columna a actualizar en base al medio de pago
+    $columna = '';
+    switch ($id_Medio_de_pago) {
+        case 1: // Asume que 1 es efectivo
+            $columna = 'ventas_efectivo';
+            break;
+        case 2: // Asume que 2 es débito
+            $columna = 'ventas_debito';
+            break;
+        case 3: // Asume que 3 es crédito
+            $columna = 'ventas_credito';
+            break;
+    }
+
+    // Prepara la consulta SQL para actualizar la caja
+    $sql = "UPDATE caja SET $columna = $columna + ? WHERE id_Caja = ?";
+
+    // Prepara la declaración
+    $stmt = mysqli_prepare($conexion, $sql);
+
+    // Vincula los parámetros
+    mysqli_stmt_bind_param($stmt, 'di', $subtotal, $id_Empleado);
+
+    // Ejecuta la declaración
+    if(mysqli_stmt_execute($stmt)){
+        
+        echo '<div class="alert alert-success" role="alert">Caja actualizada correctamente.</div>';
+    } else {
+        echo '<div class="alert alert-danger" role="alert">Error al actualizar la caja: '  . mysqli_error($conexion).'</div>';
+    }
+
 } else {
     echo '<div class="alert alert-danger" role="alert">Error al procesar la venta: '  . mysqli_error($conexion).'</div>';
 }
+
 
 // Cierra la declaración y la conexión
 mysqli_stmt_close($stmt);
 mysqli_close($conexion);
 ?>
 <br>
-<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh">
 <?php
     
     if ($_SESSION['id_Tipo_de_usuario'] == 1) {

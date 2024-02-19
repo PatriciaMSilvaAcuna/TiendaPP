@@ -15,8 +15,9 @@
 <?php
 $conexion=mysqli_connect("localhost","root","","tiendapabeso") or
     die("Problemas con la conexión");
-
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 $fecha_actual = date("Y-m-d"); // obtiene la fecha actual
+
 
 $registros=mysqli_query($conexion,"select * from ventas where DATE(fecha_Venta) = '$fecha_actual'") or
   die("Problemas en el select:".mysqli_error($conexion));
@@ -60,7 +61,7 @@ mysqli_close($conexion);
 
 
 <div>
-<a href="../Vista/AdministracionEmpleados.html" class="btn btn-secondary btn-lg ">Volver</a>        
+<a href="../Modelo/accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>        
 </div>
 <br>
 <br>
