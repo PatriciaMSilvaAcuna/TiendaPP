@@ -79,7 +79,7 @@
 
 <br><br><br>            
                       <label>Cantidad:</label>
-                      <input type="text" name="cantidad" id="cantidad">
+                      <input type="text" name="stock" id="stock">
             
 <br><br><br>            
 

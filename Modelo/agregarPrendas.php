@@ -14,7 +14,7 @@
 <div class="text-center">      
 
     <a href="insertarPrenda.php" class="btn btn-success btn-lg">Prenda Existente</a>
-    <a href="../Modelo/insertarPrenda.php" class="btn btn-primary btn-lg">Prenda Nueva</a>
+    <a href="../Modelo/insertarPrendaNueva.php" class="btn btn-primary btn-lg">Prenda Nueva</a>
     <br>
 <br>
 
