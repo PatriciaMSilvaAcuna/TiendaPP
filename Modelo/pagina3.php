@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
 <title>Consulta</title>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./precio.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
 
@@ -32,7 +33,7 @@ if (isset($_REQUEST['descripcion'])) {
             echo "ID: <input type='text' name='id_Prenda' value='" . $reg['id_Prenda'] . "'><br>";
             echo "Descripción: <input type='text' name='descripcion' value='" . $reg['descripcion'] . "'><br>";
             echo "Stock: <input type='text' name='stock' value='" . $reg['stock'] . "'><br>";
-            echo "Precio: <input type='text' name='precio' value='" . $reg['precio'] . "'><br>";
+            echo "<div class='bg-warning p-3'>Precio: <input type='text' name='precio' value='" . $reg['precio'] . "'></div><br>";
             echo "</form>";
             echo "----------------------------------------------";
         }
@@ -52,5 +53,7 @@ mysqli_close($conexion);
 <footer class="text-center bg-dark text-white py-3 mt-auto fixed-bottom">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>
 </footer>     
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

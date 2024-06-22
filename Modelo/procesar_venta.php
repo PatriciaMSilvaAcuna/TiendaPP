@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procesamiento de compra</title>
-<link rel="stylesheet" type="text/css" href="./css.css">
+<link rel="stylesheet" type="text/css" href="../Vista/css.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
-<body class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+<body class="d-flex justify-content-center" style="height: 50vh;">
 <div class="container">
     <?php
 // Inicia la sesión al principio del script
@@ -41,16 +41,18 @@ $stmt = mysqli_prepare($conexion, $sql);
 
 // Vincula los parámetros
 mysqli_stmt_bind_param($stmt, 'iid', $id_Empleado, $id_Medio_de_pago, $subtotal);
-echo '<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">';
+echo '<div class="d-flex justify-content-center align-items-center" style="height: 50vh;">';
 // Ejecuta la declaración
 if(mysqli_stmt_execute($stmt)){
-    echo '<div class="alert alert-success" role="alert">Venta procesada correctamente.</div>';
+    echo '<div class="container-fluid alert alert-success my-custom-class" role="alert">Venta procesada correctamente.</div>';
+    
+
 
     // Determina la columna a actualizar en base al medio de pago
     $columna = '';
     switch ($id_Medio_de_pago) {
         case 1: // Asume que 1 es efectivo
-            $columna = 'ventas_efectivo';
+            $columna = 'monto_Final';
             break;
         case 2: // Asume que 2 es débito
             $columna = 'ventas_debito';
@@ -72,7 +74,7 @@ if(mysqli_stmt_execute($stmt)){
     // Ejecuta la declaración
     if(mysqli_stmt_execute($stmt)){
         
-        echo '<div class="alert alert-success" role="alert">Caja actualizada correctamente.</div>';
+        echo '<div class="container-fluid alert alert-success my-custom-class" role="alert">Caja actualizada correctamente.</div>';
     } else {
         echo '<div class="alert alert-danger" role="alert">Error al actualizar la caja: '  . mysqli_error($conexion).'</div>';
     }
@@ -86,8 +88,11 @@ if(mysqli_stmt_execute($stmt)){
 mysqli_stmt_close($stmt);
 mysqli_close($conexion);
 ?>
+</div>
+<div class="container-fluid">
 <br>
-<div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+<br>
+<div class="d-flex justify-content-center align-items-center" style="height: 50vh">
 <?php
     
     if ($_SESSION['id_Tipo_de_usuario'] == 1) {
@@ -97,6 +102,9 @@ mysqli_close($conexion);
     }
 ?>
 </div>
+
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
 </body>
