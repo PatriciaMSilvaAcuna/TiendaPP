@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Borrar</title>
+<title>Dar de Baja Usuario</title>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="vh-100">
@@ -14,11 +14,11 @@
 <?php
 $conexion=mysqli_connect("localhost","root","","tiendapabeso") or die("Problemas con la conexión");
 
-$id_Empleado = $_REQUEST['id_Empleado'];
+$dni = $_REQUEST['dni'];
 
-if(is_numeric($id_Empleado)){
+if(is_numeric($dni)){
     // Primero, obtenemos los datos del empleado
-    $resultado = mysqli_query($conexion, "SELECT * FROM empleado WHERE id_Empleado = $id_Empleado");
+    $resultado = mysqli_query($conexion, "SELECT * FROM empleado WHERE dni = $dni");
 
     if($resultado){
         $empleado = mysqli_fetch_assoc($resultado);
@@ -26,12 +26,12 @@ if(is_numeric($id_Empleado)){
             echo "<div class='alert alert-info' role='alert'>";
             echo "Nombre: " . $empleado['nombre'] . "<br>";
             echo "Usuario: " . $empleado['usuario'] . "<br>";
-            // Agrega aquí más campos según sea necesario
+            
             echo "</div>";
 
             // Luego, preguntamos al usuario si desea continuar con la actualización
             echo "¿Estás seguro de que quieres dar de baja a este empleado? <br>";
-            echo "<a href='confirmar_baja.php?id_Empleado=$id_Empleado' class='btn btn-danger'>Confirmar</a>";
+            echo "<a href='confirmar_baja.php?dni=$dni' class='btn btn-danger'>Confirmar</a>";
             echo "<a href='../Vista/AdministracionEmpleados.html' class='btn btn-success'>Cancelar</a>";
         } else {
             echo "<div class='alert alert-warning' role='alert'>No se encontró ningún empleado con el ID proporcionado.</div>";

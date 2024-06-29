@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body class="d-flex align-items-center justify-content-center" style="height: 100vh;">
-<div class="container">
+<div class="card w-50 h-75 m-auto">
     <?php
 // Inicia la sesión al principio del script
 if(session_status() == PHP_SESSION_NONE){
@@ -41,6 +41,7 @@ $stmt = mysqli_prepare($conexion, $sql);
 
 // Vincula los parámetros
 mysqli_stmt_bind_param($stmt, 'iid', $id_Empleado, $id_Medio_de_pago, $subtotal);
+
 echo '<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">';
 // Ejecuta la declaración
 if(mysqli_stmt_execute($stmt)){
@@ -61,7 +62,7 @@ if(mysqli_stmt_execute($stmt)){
     }
 
     // Prepara la consulta SQL para actualizar la caja
-    $sql = "UPDATE caja SET $columna = $columna + ? WHERE id_Caja = ?";
+    $stmt = "UPDATE caja SET $columna = $columna + ? WHERE id_Caja = ?";
 
     // Prepara la declaración
     $stmt = mysqli_prepare($conexion, $sql);

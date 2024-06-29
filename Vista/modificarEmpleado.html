@@ -12,16 +12,19 @@
 </header>
 
 
-<h3 class="d-flex justify-content-center align-items-center pt-3 pr-2 pb-3 pl-2"> Administracion Empleados</h3>
+<h3 class="d-flex justify-content-center align-items-center pt-3 pr-2 pb-3 pl-2"> Modificar Empleado</h3>
 
-<a href="altaEmpleado.html" class="btn btn-primary btn-lg ">Alta</a>
-<a href="./bajaEmpleado.html" class="btn btn-info btn-lg ">Baja</a>
-<a href="./modificarEmpleado.html" class="btn btn-success btn-lg ">Modificar</a>
-<a href="../Modelo/consultaEmpleado.php" class="btn btn-primary btn-lg ">Listar</a>
+<form action="../Modelo/modificar.php" method="post">
+   Ingrese  DNI de Usuario: 
+
+   <input type="numero" name="dni"><br><br>
+   
+   <input type="submit" class="btn btn-info btn-lg" value="Buscar">
+</form>
+
 <br>
 <br>
-<br>
-<a href="../Modelo/accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>
+<a href="../Vista/AdministracionEmpleados.html" class="btn btn-secondary btn-lg ">Volver</a>
 
 <footer class="text-center bg-dark text-white py-3 fixed-bottom">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>

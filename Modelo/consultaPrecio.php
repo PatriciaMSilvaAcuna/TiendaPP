@@ -22,21 +22,25 @@
         <form action="../Modelo/pagina3.php" method="post">
         	<h5 class="card-title">Ingrese prenda a Consultar:</h5>
         
-           <input type="text" name="descripcion" placeholder=" Ingrese Prenda" class="w-100">
+           <input type="text" name="descripcion" placeholder=" Ingrese Prenda" class="form-control border border-5">
     <br>
     <br>
-    <div class="card-footer">
-
+    
     <br>
-        <input type="submit" class="btn btn-info btn-lg" value="Buscar"class="w-100">
-        </form>
-    <br>
-    <br>
-<br><br><br>
+    <div class="d-flex justify-content-center w-100">
+    <input type="submit" class="btn btn-info btn-lg d-grid d-grid w-100" value="Buscar">    
     </div>
+    <br>
+    <br>
+    
+    </form>
+    
 </div>
-<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg">Volver</a>
+<div class="card-footer ">
+
+<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg d-grid">Volver</a>
 </div>
+
 <footer class="text-center bg-dark text-white py-3 fixed-bottom">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>
 </footer>

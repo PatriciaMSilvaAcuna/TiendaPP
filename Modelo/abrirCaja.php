@@ -11,41 +11,51 @@
 <header class="text-center bg-dark text-danger py-3">
         <h4 id="Bienvenida"> PaBeSo Tienda</h4>
 </header>
-
+<div class="card w-25 h-75 m-auto">
+ <div class="card-header bg-success text-white text-center">
+             <h4> Apertura de Caja</h4>   
+ </div>
+ <div class ="card-body mt-5">            
 <?php
 session_start();
-$conexion=mysqli_connect("localhost","root","","tiendapabeso") or die("Problemas con la conexión");
+$conexion = mysqli_connect("localhost", "root", "", "tiendapabeso") or die("Problemas con la conexión");
 
 $nombreUsuario = $_SESSION['usuario'];
 // Obtengo el id_Empleado por el nombre del usuario
 $resultado = mysqli_query($conexion, "SELECT id_Empleado FROM empleado WHERE usuario = '$nombreUsuario'");
 $fila = mysqli_fetch_assoc($resultado);
 $idEmpleado = $fila['id_Empleado'];
-$montoInicio = $_POST['montoInicio'];
 
-// Verifico si ya existe una caja abierta
-$verificar = mysqli_query($conexion, "SELECT * FROM caja WHERE fecha_Cierre IS NULL");
-if(mysqli_num_rows($verificar) > 0){
-    echo "<p id='mensaje'>Ya existe una caja abierta para el usuario $nombreUsuario.</p>";
+// Validación para asegurarse de que $montoInicio sea un número
+if (!empty($_POST['montoInicio']) && is_numeric($_POST['montoInicio'])) {
+    $montoInicio = $_POST['montoInicio'];
+
+    // Verifico si ya existe una caja abierta
+    $verificar = mysqli_query($conexion, "SELECT * FROM caja WHERE fecha_Cierre IS NULL");
+    if (mysqli_num_rows($verificar) > 0) {
+        echo "<p class='alert alert-danger'>Ya existe una caja abierta para el usuario: $nombreUsuario.</p>";
+    } else {
+        // Obtengo la fecha del sistema
+        $fechaApertura = date('Y-m-d');
+
+        $consulta = "INSERT INTO caja (id_Empleado, monto_Inicio, fecha_Apertura) VALUES ('$idEmpleado', '$montoInicio', '$fechaApertura')";
+
+        if (mysqli_query($conexion, $consulta)) {
+            $idCaja = mysqli_insert_id($conexion);
+            echo "<p class='alert alert-success'>$nombreUsuario dio de alta la Caja Número: $idCaja, Con : $$montoInicio</p>";
+        } else {
+            echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
+        }
+    }
 } else {
+    echo "<div class='alert alert-danger justify-content-center'id='mensaje'  role='alert'>Error: El monto de inicio debe ser un número válido.</div>";
     
-
-
-// Obtengo  la fecha del sistema
-$fechaApertura = date('Y-m-d');
-
-$consulta = "INSERT INTO caja (id_Empleado, monto_Inicio, fecha_Apertura) VALUES ('$idEmpleado', '$montoInicio', '$fechaApertura')";
-
-if(mysqli_query($conexion, $consulta)){
-     $idCaja = mysqli_insert_id($conexion);
-    echo "<p id='mensaje'>$nombreUsuario dió de alta caja numero $idCaja, con $ $montoInicio</p>";
-} else {
-    echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 }
-}
+
 mysqli_close($conexion);
 ?>
-
+</div>
+<div class="card-footer">
 
                
 <div class="mt-auto">
@@ -53,14 +63,14 @@ mysqli_close($conexion);
 
     
     if ($_SESSION['id_Tipo_de_usuario'] == 1) {
-        echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
+        echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg w-100">Volver</a>';
     } else {
-        echo '<a href="accesoAceptadoVendedor.php" class="btn btn-secondary btn-lg ">Volver</a>';
+        echo '<a href="accesoAceptadoVendedor.php" class="btn btn-secondary btn-lg w-100 ">Volver</a>';
     }
 ?>
-
+</div>
 </div>    
-
+</div>
 <br>
 <footer class="text-center bg-dark text-white py-3 fixed-bottom">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>

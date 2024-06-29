@@ -11,31 +11,45 @@
 <header class="text-center bg-dark text-danger py-3">
         <h4 id="Bienvenida"> PaBeSo Tienda</h4>
 </header>
+<div class="card w-25 h-75 m-auto"> 
+        <div class="card-header bg-success text-white text-center">
+             <h4> Apertura de Caja</h4>
+    </div>
+    <div class="card-body">
+             <form action="http://localhost/Tienda/Modelo/abrirCaja.php" method="post">  
+             <div class="form-group">
+            <h5 class="card-title">Ingrese Monto de Apertura:</h5>
+                        
+                <input type="text" name="montoInicio" placeholder=" Ingrese: $10000 " class="form-control border border-5">
+        
+    <br>
+    
+    <br>
+    <div class="d-flex justify-content-center w-100">
+       <input type="submit" value="Abrir Caja" class="btn btn-primary btn-lg d-grid w-100">
+        
+    </div>
+    
+    
+   </form>  
+</div>
+</form>
+</div>
+<div class="card-footer ">
+
 
 	
-<div class="d-flex justify-content-center align-items-center flex-grow-1 mb-5">
-  
-        <form action="http://localhost/Tienda/Modelo/abrirCaja.php" method="post">
-            <div class="form-group">
-                <label>Ingrese Monto de Apertura:</label>
-                
-                <input type="text" name="montoInicio" class="form-control">
-            </div>
-             <br>
-            <input type="submit" value="Abrir Caja" class="btn btn-primary">
-        </form>
-    </div>
     <div class="mt-auto">
 <?php
     session_start();
     if ($_SESSION['id_Tipo_de_usuario'] == 1) {
-        echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg ">Volver</a>';
+        echo '<a href="accesoAceptadoAdmin.php" class="btn btn-secondary btn-lg d-grid">Volver</a>';
     } else {
-        echo '<a href="accesoAceptadoVendedor.php" class="btn btn-secondary btn-lg ">Volver</a>';
+        echo '<a href="accesoAceptadoVendedor.php" class="btn btn-secondary btn-lg d-grid">Volver</a>';
     }
 ?>
     </div> 
-  <br>
+</div>  
 <footer class="text-center bg-dark text-white py-3 fixed-bottom">
        <p>© 2023 PaBeSo Tienda. Todos los derechos reservados.</p>
 </footer>   
