@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venta</title>
+    <link rel="icon" href="../vista/vendedora.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body class="vh-100">
@@ -34,11 +35,17 @@ die("Problemas con la conexión");
 
 if (isset($_REQUEST['descripcion'])) {
     $descripcion = mysqli_real_escape_string($conexion, $_REQUEST['descripcion']);
+
     $registro=mysqli_query($conexion, "SELECT p.id_Prenda, p.descripcion AS Descripcion, t.nombre AS Talle, c.nombre AS Color, i.precio AS Precio
 FROM prendas AS p
 JOIN tipodeprenda AS t ON p.id_Tipo_de_prenda = t.id_Tipo_de_prenda
 JOIN color AS c ON p.id_Color = c.id_Color
 JOIN precio AS i ON p.id_Precio = i.id_Precio
+
+    $registro=mysqli_query($conexion, "SELECT p.id_Prenda, pr.precio, p.descripcion
+FROM prendas p
+JOIN precio pr ON p.id_Prenda = pr.id_Prenda
+
 WHERE p.descripcion LIKE '%$descripcion%'")
     or die(" Problemas con la conexión".mysqli_error($conexion));
   

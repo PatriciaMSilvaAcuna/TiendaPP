@@ -34,6 +34,8 @@ if (isset($_REQUEST['descripcion'])) {
             echo "Descripción: <input type='text' name='descripcion' value='" . $reg['descripcion'] . "'><br>";
             echo "Stock: <input type='text' name='stock' value='" . $reg['stock'] . "'><br>";
             echo "<div class='bg-warning p-3'>Precio $: <input type='text' name='precio' value='" . $reg['precio'] . "'></div><br>";
+            echo "<div class='bg-warning p-3'>Precio: <input type='text' name='precio' value='" . $reg['precio'] . "'></div><br>";
+
             echo "</form>";
             echo "----------------------------------------------";
         }
